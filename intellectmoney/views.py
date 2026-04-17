@@ -62,8 +62,8 @@ def receive_result(request):
             invoice.eshopAccount = data['eshopAccount']
             invoice.eshopId = data['eshopId']
             invoice.save()
-            shortPan = data['shortPan'] or None
-            brandType = data['brandType'] or None
+            shortPan = data['shortPan']
+            brandType = data['brandType']
             result_received.send(
                 sender=invoice,
                 orderId=orderId,
