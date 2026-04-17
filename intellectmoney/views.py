@@ -62,8 +62,14 @@ def receive_result(request):
             invoice.eshopAccount = data['eshopAccount']
             invoice.eshopId = data['eshopId']
             invoice.save()
+            shortPan = data['shortPan'] or None
+            brandType = data['brandType'] or None
             result_received.send(
-                sender=invoice, orderId=orderId, recipientAmount=recipientAmount,
+                sender=invoice,
+                orderId=orderId,
+                recipientAmount=recipientAmount,
+                shortPan=shortPan,
+                brandType=brandType,
             )
         elif paymentStatus == 3:
             return HttpResponse('OK')
